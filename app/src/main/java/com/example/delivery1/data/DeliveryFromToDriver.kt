@@ -1,4 +1,4 @@
-package moe.yhi.apps.playground.data
+package com.example.delivery1.data
 
 import androidx.room.Embedded
 import androidx.room.Relation
