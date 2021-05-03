@@ -1,5 +1,6 @@
 package com.example.delivery1
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
@@ -35,7 +36,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val aboutFragment = about()
         /---*/
 
-        //*-------Change Fragment---------*/
+        /*-------Change Fragment---------*/
         makeCurrentFragment(deliveriesFragment)
 
         bottom_navigation.setOnNavigationItemSelectedListener {
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true
         }
 
-        //*--------------------------------------------------------------------------
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
         val navigationView : NavigationView =findViewById(R.id.nav_view)
         val toolbar : androidx.appcompat.widget.Toolbar? = findViewById(R.id.toolbar)
@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
 
-        //Drawer-------------------------------------------------------------------*/
 
         /*----usable---
         toggle =  ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
@@ -82,7 +81,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             true
         }
         /------*/
-
 
 
     }
@@ -112,7 +110,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (it.itemId){
+            R.id.nav_settings -> break
+            R.id.nav_profile -> break
+            R.id.nav_logout ->{
+                var intent : Intent = Intent(MainActivity.this,LoginActivity.class)
+            }
+        }
         return true
     }
+
+
 }
 
