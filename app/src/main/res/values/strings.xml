@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Delivery1</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="manager_view">Manager View</string>
+    <string name="about_us_text">Group Memebers : Haoyu Wang \ Bin Ye \ Minyong Li</string>
 </resources>
