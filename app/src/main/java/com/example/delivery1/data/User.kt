@@ -12,6 +12,6 @@ data class User(
     val user_id: String,
     val username: String,
     val password: String,
-    val association: String?,
+    val association: Int?,
     val phone: String?,
 )
