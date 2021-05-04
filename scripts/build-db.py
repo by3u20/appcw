@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Script to build the SQLite database from schema output by Android Room ORM
 # Usage: build-db.py <db_version>
 
