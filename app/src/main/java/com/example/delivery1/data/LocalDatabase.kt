@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
         User::class,
         Delivery::class,
     ],
-    exportSchema = false
+    exportSchema = true
 )
 abstract class LocalDatabase: RoomDatabase() {
     abstract fun siteDao(): SiteDao
