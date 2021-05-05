@@ -14,7 +14,7 @@ interface UserDao {
     @Query("SELECT * FROM Users WHERE user_id = :uid AND password = :password LIMIT 1")
     fun getUserWithUidPassword(uid: String, password: String): User?
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addUser(user: User)
 
     @Update

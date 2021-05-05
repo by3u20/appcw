@@ -1,6 +1,7 @@
 package com.example.delivery1.data
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "Users",
