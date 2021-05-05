@@ -28,13 +28,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val buildingFragment = Building()
         val bottom_navigation = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
 
-        /*----usable---
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
-        val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar)
-        setSupportActionBar(toolbar)
-        val navView = findViewById<com.google.android.material.navigation.NavigationView>(R.id.nav_view)
-        val aboutFragment = about()
-        /---*/
 
         /*-------Change Fragment---------*/
         makeCurrentFragment(deliveriesFragment)
@@ -62,24 +55,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
-
-        /*----usable---
-        toggle =  ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
-        toggle.isDrawerIndicatorEnabled=true
-        drawerLayout.addDrawerListener(toggle)
-        toggle.syncState()
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        navView.setNavigationItemSelectedListener {
-            when(it.itemId){
-                R.id.nav_settings -> makeCurrentFragment(aboutFragment)
-                R.id.nav_profile -> makeCurrentFragment(aboutFragment)
-                R.id.nav_logout -> makeCurrentFragment(aboutFragment)
-                R.id.nav_share -> makeCurrentFragment(aboutFragment)
-                R.id.nav_about -> makeCurrentFragment(aboutFragment)
-            }
-            true
-        }
-        /------*/
 
 
     }
