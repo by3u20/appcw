@@ -14,7 +14,7 @@ import androidx.fragment.app.Fragment
 import com.example.delivery1.fragments.*
 import com.google.android.material.navigation.NavigationView
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var toggle: ActionBarDrawerToggle
 
@@ -63,7 +63,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
 
-
         /*----usable---
         toggle =  ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
         toggle.isDrawerIndicatorEnabled=true
@@ -109,17 +108,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
     }
 
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (it.itemId){
-            R.id.nav_settings -> break
-            R.id.nav_profile -> break
-            R.id.nav_logout ->{
-                var intent : Intent = Intent(MainActivity.this,LoginActivity.class)
+    override fun onNavigationItemSelected(item: MenuItem): Boolean{
+        val intent : Intent = Intent()
+        when (item.itemId){
+            R.id.nav_settings -> {
+                Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_profile -> {
+                Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_logout -> {
+                intent.setClass(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
+            R.id.nav_share -> {
+                Toast.makeText(this,"Copied!",Toast.LENGTH_SHORT).show()
             }
         }
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+        drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
-
-
 }
 

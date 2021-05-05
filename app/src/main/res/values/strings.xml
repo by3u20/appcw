@@ -17,4 +17,5 @@
     <string name="card_delivery_from_title">From</string>
     <string name="card_delivery_to_title">To</string>
     <string name="card_delivery_status_title">Status</string>
+    <string name="add_new_data">Add New Data</string>
 </resources>
