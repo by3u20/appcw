@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         val intent : Intent = Intent()
+        val about = About()
         when (item.itemId){
             R.id.nav_settings -> {
                 Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
@@ -98,6 +99,9 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
             }
             R.id.nav_share -> {
                 Toast.makeText(this,"Copied!",Toast.LENGTH_SHORT).show()
+            }
+            R.id.nav_about ->{
+                makeCurrentFragment(about)
             }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
