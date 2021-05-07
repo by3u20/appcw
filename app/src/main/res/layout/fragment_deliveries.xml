@@ -16,6 +16,10 @@
             android:text="Deliveries list here"
             android:layout_centerInParent='true'
             />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </RelativeLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

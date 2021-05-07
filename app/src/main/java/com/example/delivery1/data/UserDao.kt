@@ -15,7 +15,7 @@ interface UserDao {
     fun getUserWithUidPassword(uid: String, password: String): User?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addUser(user: User)
+    suspend fun addUser(user: User)
 
     @Update
     fun updUser(user: User)
