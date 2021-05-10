@@ -2,105 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "2a963aba1dee608526a06bf16fe02797",
+    "identityHash": "2b4393a9d14f49c0c2b8271e79e14bc3",
     "entities": [
       {
-        "tableName": "Sites",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `role` TEXT NOT NULL, `name` TEXT NOT NULL, `location` TEXT NOT NULL, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "role",
-            "columnName": "role",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "location",
-            "columnName": "location",
-            "affinity": "TEXT",
-            "notNull": true
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "Users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `role` TEXT NOT NULL, `user_id` TEXT NOT NULL, `username` TEXT NOT NULL, `password` TEXT NOT NULL, `association` INTEGER, `phone` TEXT, PRIMARY KEY(`id`))",
-        "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "role",
-            "columnName": "role",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "user_id",
-            "columnName": "user_id",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "username",
-            "columnName": "username",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "password",
-            "columnName": "password",
-            "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "association",
-            "columnName": "association",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "phone",
-            "columnName": "phone",
-            "affinity": "TEXT",
-            "notNull": false
-          }
-        ],
-        "primaryKey": {
-          "columnNames": [
-            "id"
-          ],
-          "autoGenerate": false
-        },
-        "indices": [],
-        "foreignKeys": []
-      },
-      {
-        "tableName": "DeliveriesTable",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `status` TEXT NOT NULL, `from_id` TEXT NOT NULL, `to_id` TEXT NOT NULL, `driver_id` TEXT NOT NULL, PRIMARY KEY(`id`), FOREIGN KEY(`from_id`) REFERENCES `Sites`(`id`) ON UPDATE CASCADE ON DELETE SET DEFAULT , FOREIGN KEY(`to_id`) REFERENCES `Sites`(`id`) ON UPDATE CASCADE ON DELETE SET DEFAULT , FOREIGN KEY(`driver_id`) REFERENCES `Users`(`id`) ON UPDATE CASCADE ON DELETE SET DEFAULT )",
+        "tableName": "Deliveries",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `status` TEXT NOT NULL, `from` TEXT NOT NULL, `to` TEXT NOT NULL, `driver` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -115,20 +21,20 @@
             "notNull": true
           },
           {
-            "fieldPath": "from_id",
-            "columnName": "from_id",
+            "fieldPath": "from",
+            "columnName": "from",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "to_id",
-            "columnName": "to_id",
+            "fieldPath": "to",
+            "columnName": "to",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "driver_id",
-            "columnName": "driver_id",
+            "fieldPath": "driver",
+            "columnName": "driver",
             "affinity": "TEXT",
             "notNull": true
           }
@@ -140,47 +46,13 @@
           "autoGenerate": false
         },
         "indices": [],
-        "foreignKeys": [
-          {
-            "table": "Sites",
-            "onDelete": "SET DEFAULT",
-            "onUpdate": "CASCADE",
-            "columns": [
-              "from_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          },
-          {
-            "table": "Sites",
-            "onDelete": "SET DEFAULT",
-            "onUpdate": "CASCADE",
-            "columns": [
-              "to_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          },
-          {
-            "table": "Users",
-            "onDelete": "SET DEFAULT",
-            "onUpdate": "CASCADE",
-            "columns": [
-              "driver_id"
-            ],
-            "referencedColumns": [
-              "id"
-            ]
-          }
-        ]
+        "foreignKeys": []
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2a963aba1dee608526a06bf16fe02797')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '2b4393a9d14f49c0c2b8271e79e14bc3')"
     ]
   }
 }

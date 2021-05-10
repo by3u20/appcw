@@ -6,7 +6,7 @@ import androidx.room.Dao
 
 @Dao
 interface DeliveryDao {
-    @Query("SELECT * FROM DeliveriesTable")
+    @Query("SELECT * FROM Deliveries")
     fun getDeliveries(): LiveData<List<Delivery>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)

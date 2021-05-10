@@ -5,17 +5,13 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.*
 
 @Entity(
-    tableName = "DeliveriesTable",
+    tableName = "Deliveries",
     primaryKeys = ["id"],
 )
 data class Delivery(
     val id: String,
     val status: String,
-    val from_id: String,
-    val to_id: String,
-    val driver_id: String,
-    val role: String?,
-    val username: String?,
-    val password: String?,
-    val phone: String?,
+    val from: String,
+    val to: String,
+    val driver: String,
 )
