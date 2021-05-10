@@ -20,7 +20,8 @@ abstract class LocalDatabase: RoomDatabase() {
     abstract fun deliveryDao(): DeliveryDao
 
     companion object {
-        private var instance: LocalDatabase? = null
+        @Volatile
+        private var INSTANCE: LocalDatabase? = null
 
         private fun buildDatabase(context: Context): LocalDatabase {
             return Room
@@ -29,9 +30,19 @@ abstract class LocalDatabase: RoomDatabase() {
                 .build()
         }
 
-        fun getInstance(context: Context): LocalDatabase {
-            return instance ?: synchronized(this) {
-                buildDatabase(context).also { instance = it }
+        fun getDatabase(context: Context): LocalDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance!=null){
+                return tempInstance
+            }
+            synchronized(this){
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    LocalDatabase::class.java,
+                    "Local_Database"
+                ).build()
+                INSTANCE = instance
+                return instance
             }
         }
     }

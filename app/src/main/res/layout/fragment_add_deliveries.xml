@@ -63,14 +63,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Package Status"
+            app:endIconMode="dropdown_menu"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:layout_marginTop="10dp">
 
-            <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            <AutoCompleteTextView
                 android:id="@+id/add_deliveries_status_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
+                android:layout_height="match_parent"
                 />
 
         </com.google.android.material.textfield.TextInputLayout>

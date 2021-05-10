@@ -1,8 +1,13 @@
-<TextView
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android= "http://schemas.android.com/apk/res/android"
     android:id="@+id/dropdown_item_delivery_status_textview"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:text="TextView"
     android:padding="10dp"
     android:textColor="@color/black"
-    xmlns:android= "http://schemas.android.com/apk/res/android"/>
+    android:textSize="16sp"
+    android:maxLines="1"
+    >
+
+</TextView>

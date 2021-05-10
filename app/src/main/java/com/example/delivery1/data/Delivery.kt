@@ -5,7 +5,7 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.*
 
 @Entity(
-    tableName = "Deliveries",
+    tableName = "DeliveriesTable",
     primaryKeys = ["id"],
     foreignKeys = [
         ForeignKey(entity = Site::class, parentColumns = ["id"], childColumns = ["from_id"], onDelete = SET_DEFAULT, onUpdate = CASCADE),
@@ -14,9 +14,9 @@ import androidx.room.ForeignKey.*
     ],
 )
 data class Delivery(
-    val id: Int,
-    val status: DeliveryStatus,
-    val from_id: Int,
-    val to_id: Int,
-    val driver_id: Int,
+    val id: String,
+    val status: String,
+    val from_id: String,
+    val to_id: String,
+    val driver_id: String,
 )

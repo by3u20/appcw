@@ -1,21 +1,22 @@
 package com.example.delivery1.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.Dao
 
 @Dao
 interface DeliveryDao {
-    @Query("SELECT * FROM Deliveries")
-    fun getDeliveries(): Array<Delivery>
+    @Query("SELECT * FROM DeliveriesTable")
+    fun getDeliveries(): LiveData<List<Delivery>>
 
-    @Query("SELECT * FROM Deliveries WHERE status = :status")
+    @Query("SELECT * FROM DeliveriesTable WHERE status = :status")
     fun getDeliveriesWithStatus(status: DeliveryStatus): Array<Delivery>
 
     @Transaction
-    @Query("SELECT * FROM Deliveries")
+    @Query("SELECT * FROM DeliveriesTable")
     fun getDeliveriesFromToDriver(): Array<DeliveryFromToDriver>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addDelivery(pkg: Delivery)
 
     @Update
