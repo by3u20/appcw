@@ -42,7 +42,7 @@ class AddDeliveries : Fragment() {
         mDeliveryViewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
 
         binding.addDeliveryButtonWithInfo.setOnClickListener {
-            insertDataToDatabase()
+            //insertDataToDatabase()
             Toast.makeText(requireContext(),"Clicked!",Toast.LENGTH_SHORT).show()
         }
         return binding.root
@@ -55,7 +55,7 @@ class AddDeliveries : Fragment() {
         val toID = binding.addDeliveriesToIdText.text.toString()
         val driverID = binding.addDeliveriesDriverIdText.text.toString()
         if(inputCheck(deliveriesID,deliveryStatus,fromID,toID,driverID)){
-            val delivery = Delivery(deliveriesID,deliveryStatus,fromID,toID,driverID)
+            val delivery = Delivery(deliveriesID,deliveryStatus,fromID,toID,driverID,null,null,null,null)
             mDeliveryViewModel.addDelivery(delivery)
             Toast.makeText(requireContext(),"Successfully Added!",Toast.LENGTH_SHORT).show()
         }

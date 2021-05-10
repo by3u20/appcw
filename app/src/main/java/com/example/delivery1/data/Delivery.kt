@@ -14,8 +14,8 @@ data class Delivery(
     val from_id: String,
     val to_id: String,
     val driver_id: String,
-    val role: String,
-    val username: String,
-    val password: String,
+    val role: String?,
+    val username: String?,
+    val password: String?,
     val phone: String?,
 )

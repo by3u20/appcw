@@ -7,9 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     version = 1,
-    entities = [
-        Delivery::class,
-    ],
+    entities = [Delivery::class],
     exportSchema = true
 )
 abstract class LocalDatabase: RoomDatabase() {
@@ -18,13 +16,6 @@ abstract class LocalDatabase: RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: LocalDatabase? = null
-
-        private fun buildDatabase(context: Context): LocalDatabase {
-            return Room
-                .databaseBuilder(context, LocalDatabase::class.java, "constructor.db")
-                .createFromAsset("db/sample.db")
-                .build()
-        }
 
         fun getDatabase(context: Context): LocalDatabase {
             val tempInstance = INSTANCE
