@@ -7,8 +7,7 @@
     android:orientation="vertical"
     android:background="@color/white"
     android:gravity="center_horizontal"
-    android:id="@+id/add_deliveries_layout"
-    >
+    android:id="@+id/add_deliveries_layout">
 
 
     <ImageView
@@ -122,7 +121,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/add_delivery_button"
+            android:id="@+id/add_delivery_button_with_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="#fff"
@@ -130,7 +129,6 @@
             android:layout_marginTop="20dp"/>
 
     </LinearLayout>
-
 
 
 
