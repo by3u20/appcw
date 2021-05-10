@@ -7,11 +7,6 @@ import androidx.room.ForeignKey.*
 @Entity(
     tableName = "DeliveriesTable",
     primaryKeys = ["id"],
-    foreignKeys = [
-        ForeignKey(entity = Site::class, parentColumns = ["id"], childColumns = ["from_id"], onDelete = SET_DEFAULT, onUpdate = CASCADE),
-        ForeignKey(entity = Site::class, parentColumns = ["id"], childColumns = ["to_id"], onDelete = SET_DEFAULT, onUpdate = CASCADE),
-        ForeignKey(entity = User::class, parentColumns = ["id"], childColumns = ["driver_id"], onDelete = SET_DEFAULT, onUpdate = CASCADE),
-    ],
 )
 data class Delivery(
     val id: String,
@@ -19,4 +14,8 @@ data class Delivery(
     val from_id: String,
     val to_id: String,
     val driver_id: String,
+    val role: String,
+    val username: String,
+    val password: String,
+    val phone: String?,
 )

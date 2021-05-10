@@ -8,15 +8,11 @@ import androidx.room.RoomDatabase
 @Database(
     version = 1,
     entities = [
-        Site::class,
-        User::class,
         Delivery::class,
     ],
     exportSchema = true
 )
 abstract class LocalDatabase: RoomDatabase() {
-    abstract fun siteDao(): SiteDao
-    abstract fun userDao(): UserDao
     abstract fun deliveryDao(): DeliveryDao
 
     companion object {

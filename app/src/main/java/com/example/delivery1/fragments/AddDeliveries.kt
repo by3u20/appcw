@@ -31,7 +31,7 @@ class AddDeliveries : Fragment() {
         super.onResume()
         val deliveryStatus =resources.getStringArray(R.array.delivery_status)
         val arrayAdapter = ArrayAdapter(requireContext(),R.layout.dropdown_item_delivery_status,deliveryStatus)
-        binding.addDeliveriesStatusText.setAdapter(arrayAdapter )
+        //binding.addDeliveriesStatusText.setAdapter(arrayAdapter )
     }
 
     override fun onCreateView(
@@ -43,6 +43,7 @@ class AddDeliveries : Fragment() {
 
         binding.addDeliveryButtonWithInfo.setOnClickListener {
             insertDataToDatabase()
+            Toast.makeText(requireContext(),"Clicked!",Toast.LENGTH_SHORT).show()
         }
         return binding.root
     }
