@@ -14,7 +14,6 @@ import android.widget.Button;
 import com.example.delivery1.AddDeliveryActivity;
 import com.example.delivery1.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.example.delivery1.fragments.AddDeliveries;
 
 public class Deliveries extends Fragment {
 
