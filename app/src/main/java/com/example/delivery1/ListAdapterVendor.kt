@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.delivery1.data.Delivery
-import com.example.delivery1.databinding.CustomRowInListDeliveriesBinding
 
 
 class ListAdapterVendor : RecyclerView.Adapter<ListAdapterVendor.MyViewHolder>() {
@@ -19,7 +18,7 @@ class ListAdapterVendor : RecyclerView.Adapter<ListAdapterVendor.MyViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return  MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_site_info,parent,false))
+        return  MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_info,parent,false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {

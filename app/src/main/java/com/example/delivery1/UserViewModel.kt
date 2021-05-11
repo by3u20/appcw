@@ -2,15 +2,15 @@ package com.example.delivery1
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.delivery1.data.LocalDatabase
 import com.example.delivery1.data.UserEntity
 
 class UserViewModel(app: Application): AndroidViewModel(app) {
-    lateinit var allUsers : MutableLiveData<List<UserEntity>>
+    private var allUsers : MutableLiveData<List<UserEntity>> = MutableLiveData()
 
-    init{
-        allUsers = MutableLiveData()
+    init {
         getAllUsers()
     }
 
@@ -22,7 +22,7 @@ class UserViewModel(app: Application): AndroidViewModel(app) {
         val userDao = LocalDatabase.getDatabase((getApplication())).userDao()
         val list = userDao.getAllUserInfo()
 
-        allUsers.postValue(list)
+        allUsers.postValue(list.value)
     }
 
     fun insertUserInfo(entity: UserEntity){
