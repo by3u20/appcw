@@ -35,7 +35,7 @@ class ListAdapterBS : RecyclerView.Adapter<ListAdapterBS.MyViewHolder>() {
         deliveryList = delivery
         reducedDeliveryList = mutableListOf<Delivery>().also { mulDelivery ->
             delivery.forEach { d ->
-                if (!mulDelivery.map { it.from }.contains(d.from))
+                if (!mulDelivery.map { it.to }.contains(d.to))
                     mulDelivery.add(d)
             }
         }
