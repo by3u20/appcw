@@ -9,6 +9,12 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.delivery1.data.DeliveryViewModel
+import com.example.delivery1.data.DriverDeliveryViewModel
 import com.example.delivery1.fragments.About
 import com.google.android.material.navigation.NavigationView
 
@@ -34,6 +40,15 @@ class DriverSide : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
 
+        // Populate the delivery list
+        val adapter = ListAdapterDelivery()
+        val viewModel = ViewModelProvider(this).get(DriverDeliveryViewModel::class.java)
+        val deliveryList: RecyclerView = findViewById(R.id.driver_delivery_list)
+        deliveryList.adapter = adapter
+        deliveryList.layoutManager = LinearLayoutManager(applicationContext)
+        viewModel.getDeliveries.observe({ lifecycle }, {
+            adapter.setData(it)
+        })
     }
 
 

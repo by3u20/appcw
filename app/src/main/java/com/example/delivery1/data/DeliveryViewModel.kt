@@ -13,7 +13,7 @@ class DeliveryViewModel(application: Application) : AndroidViewModel(application
 
     init {
         val deliveryDao = LocalDatabase.getDatabase(application).deliveryDao()
-        repository = DeliveryRepository(deliveryDao)
+        repository = DeliveryRepository(deliveryDao, "Admin")
         getDeliveries = repository.getDeliveries
     }
 

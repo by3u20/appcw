@@ -17,9 +17,7 @@ tools:context=".DriverSide">
         app:menu="@menu/setting_menu"
         android:layout_gravity="start"/>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <RelativeLayout
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <androidx.appcompat.widget.Toolbar
@@ -42,6 +40,10 @@ tools:context=".DriverSide">
             android:layout_above="@+id/bottom_navigation"
             >
 
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/driver_delivery_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </FrameLayout>
 
     </RelativeLayout>
