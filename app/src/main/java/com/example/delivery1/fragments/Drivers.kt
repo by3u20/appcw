@@ -11,11 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.delivery1.AddDriverActivity
-import com.example.delivery1.ListAdapterDelivery
-import com.example.delivery1.MainActivity
-import com.example.delivery1.R
+import com.example.delivery1.*
 import com.example.delivery1.data.DeliveryViewModel
+import com.example.delivery1.data.LocalDatabase
 
 
 class Drivers : Fragment(){
@@ -31,20 +29,17 @@ class Drivers : Fragment(){
     ): View? {
         val view = inflater.inflate(R.layout.fragment_drivers, container, false)
 
-        val adapter = ListAdapterDelivery()
-        var mDeliveryViewModel: DeliveryViewModel
+        val adapter = ListAdapterDriver()
+        val mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val recyclerView: RecyclerView = view.findViewById(R.id.drivers_list)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        mDeliveryViewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
-        mDeliveryViewModel.getDeliveries.observe(viewLifecycleOwner, Observer { delivery ->
-            adapter.setData(delivery)
+        mUserViewModel.allUsers.observe(viewLifecycleOwner, Observer {
+            adapter.setData(it)
         })
 
-        var button : Button = view.findViewById(R.id.add_new_driver_button)
-        button.setOnClickListener {
-            val intent = Intent(activity, AddDriverActivity::class.java)
-            startActivity(intent)
+        view.findViewById<Button>(R.id.add_new_driver_button).setOnClickListener {
+            startActivity(Intent(activity, AddDriverActivity::class.java))
         }
 
         return view

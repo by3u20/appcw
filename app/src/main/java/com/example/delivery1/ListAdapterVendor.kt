@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.delivery1.data.Delivery
-import com.example.delivery1.databinding.CustomRowInListDeliveriesBinding
 
 
 class ListAdapterVendor : RecyclerView.Adapter<ListAdapterVendor.MyViewHolder>() {

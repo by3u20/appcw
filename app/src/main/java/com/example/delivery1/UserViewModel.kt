@@ -2,15 +2,15 @@ package com.example.delivery1
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.delivery1.data.LocalDatabase
 import com.example.delivery1.data.UserEntity
 
 class UserViewModel(app: Application): AndroidViewModel(app) {
-    lateinit var allUsers : MutableLiveData<List<UserEntity>>
+    var allUsers : MutableLiveData<List<UserEntity>> = MutableLiveData()
 
-    init{
-        allUsers = MutableLiveData()
+    init {
         getAllUsers()
     }
 
