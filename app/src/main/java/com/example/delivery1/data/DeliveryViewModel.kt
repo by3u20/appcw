@@ -8,8 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DeliveryViewModel(application: Application) : AndroidViewModel(application){
-    private val getDeliveries : LiveData<List<Delivery>>
-    private val repository : DeliveryRepository
+    val getDeliveries : LiveData<List<Delivery>>
+    val repository : DeliveryRepository
 
     init {
         val deliveryDao = LocalDatabase.getDatabase(application).deliveryDao()
