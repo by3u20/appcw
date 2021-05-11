@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.delivery1.data.UserEntity
-import com.example.delivery1.RecyclerViewAdapter
-import com.example.delivery1.data.UserViewModel
 import com.example.delivery1.databinding.ActivityAddDriverBinding
 
 class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListener  {
@@ -30,11 +28,9 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         recyclerViewAdapter = RecyclerViewAdapter(this)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = recyclerViewAdapter
+        val divider = DividerItemDecoration(this, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.addItemDecoration(divider)
 
-        recyclerView.apply {
-            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(divider)
-        }
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.getAllUsersObservers().observe(this, Observer {

@@ -1,4 +1,4 @@
-package com.example.delivery1.data
+package com.example.delivery1
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
@@ -19,27 +19,27 @@ class UserViewModel(app: Application): AndroidViewModel(app) {
     }
 
     fun getAllUsers() {
-        val userDao = LocalDatabase.getDatabase((getApplication()))?.userDao()
-        val list = userDao?.getAllUserInfo()
+        val userDao = LocalDatabase.getDatabase((getApplication())).userDao()
+        val list = userDao.getAllUserInfo()
 
         allUsers.postValue(list)
     }
 
     fun insertUserInfo(entity: UserEntity){
-        val userDao = LocalDatabase.getDatabase(getApplication())?.userDao()
-        userDao?.insertUser(entity)
+        val userDao = LocalDatabase.getDatabase(getApplication()).userDao()
+        userDao.insertUser(entity)
         getAllUsers()
     }
 
     fun updateUserInfo(entity: UserEntity){
-        val userDao = LocalDatabase.getDatabase(getApplication())?.userDao()
-        userDao?.updateUser(entity)
+        val userDao = LocalDatabase.getDatabase(getApplication()).userDao()
+        userDao.updateUser(entity)
         getAllUsers()
     }
 
     fun deleteUserInfo(entity: UserEntity){
-        val userDao = LocalDatabase.getDatabase(getApplication())?.userDao()
-        userDao?.deleteUser(entity)
+        val userDao = LocalDatabase.getDatabase(getApplication()).userDao()
+        userDao.deleteUser(entity)
         getAllUsers()
     }
 }
