@@ -26,11 +26,15 @@ class AddDeliveryActivity : AppCompatActivity() {
         binding = ActivityAddDeliveryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val deliveryStatus = resources.getStringArray(R.array.delivery_status)
+        val arrayAdapter = ArrayAdapter(this,R.layout.dropdown_item_delivery_status,deliveryStatus)
+        binding.addDeliveriesStatusText.setAdapter(arrayAdapter)
+
+
         mDeliveryViewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
 
         binding.addDeliveryButtonWithInfo.setOnClickListener {
             this.insertDataToDatabase()
-//            Toast.makeText(applicationContext,"Clicked!",Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -52,6 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Package ID"
+                app:startIconDrawable="@drawable/deliveries"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -66,13 +67,15 @@
                 android:hint="Package Status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:startIconDrawable="@drawable/about"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_marginTop="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/add_deliveries_status_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:inputType="none"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -80,6 +83,7 @@
                 android:id="@+id/add_deliveries_from_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/vendors"
                 android:hint="Vendors ID"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="10dp">
@@ -96,6 +100,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Building Sites ID"
+                app:startIconDrawable="@drawable/buildingsites"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="10dp">
 
@@ -110,6 +115,7 @@
                 android:id="@+id/add_deliveries_driver_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:startIconDrawable="@drawable/drivers"
                 android:hint="Driver ID"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_marginTop="10dp">
