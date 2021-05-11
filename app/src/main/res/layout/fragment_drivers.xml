@@ -7,19 +7,27 @@
     tools:context=".fragments.Drivers">
 
 
-    <EditText android:id="@+id/nameInput"
+    <EditText android:id="@+id/roleInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your username"
+        android:hint="Enter new user's role"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="10dp"
         />
 
+    <EditText android:id="@+id/nameInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter new user's username"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roleInput"
+        android:layout_marginStart="10dp"/>
+
     <EditText android:id="@+id/emailInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your email"
+        android:hint="Enter new user's email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nameInput"
         android:layout_marginStart="10dp"/>
@@ -27,9 +35,17 @@
     <EditText android:id="@+id/phoneInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter your phone number"
+        android:hint="Enter new user's phone number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailInput"
+        android:layout_marginStart="10dp"/>
+
+    <EditText android:id="@+id/passwordInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter new user's password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phoneInput"
         android:layout_marginStart="10dp"/>
 
     <Button android:id="@+id/saveButton"
@@ -38,7 +54,7 @@
         android:text="Save"
         android:layout_margin="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneInput"
+        app:layout_constraintTop_toBottomOf="@+id/passwordInput"
         />
 
     <androidx.recyclerview.widget.RecyclerView

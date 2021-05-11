@@ -10,7 +10,7 @@ import com.example.delivery1.R
 import com.example.delivery1.data.UserEntity
 import com.example.delivery1.databinding.RecyclerviewRowBinding
 
-class UserRecylerViewAdapter(val listener: RowClickListener): RecyclerView.Adapter<UserRecylerViewAdapter.MyViewHolder>() {
+class UserRecylerViewAdapter (val listener: RowClickListener): RecyclerView.Adapter<UserRecylerViewAdapter.MyViewHolder>() {
 
     private lateinit var binding: RecyclerviewRowBinding
     var items  = ArrayList<UserEntity>()

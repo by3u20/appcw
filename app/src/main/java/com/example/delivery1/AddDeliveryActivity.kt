@@ -45,7 +45,7 @@ class AddDeliveryActivity : AppCompatActivity() {
                            fromID: String,
                            toID: String,
                            driverID: String) : Boolean {
-        return !(TextUtils.isEmpty(deliveriesID) && TextUtils.isEmpty(deliveryStatus) && TextUtils.isEmpty(fromID) && TextUtils.isEmpty(toID) && TextUtils.isEmpty(driverID))
+        return !(TextUtils.isEmpty(deliveriesID) || TextUtils.isEmpty(deliveryStatus) || TextUtils.isEmpty(fromID) || TextUtils.isEmpty(toID) || TextUtils.isEmpty(driverID))
     }
 
     private fun insertDataToDatabase() {
