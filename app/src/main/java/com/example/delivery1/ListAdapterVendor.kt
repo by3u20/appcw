@@ -18,7 +18,7 @@ class ListAdapterVendor : RecyclerView.Adapter<ListAdapterVendor.MyViewHolder>()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return  MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_info,parent,false))
+        return  MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.card_site_info,parent,false))
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
