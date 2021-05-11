@@ -1,18 +1,21 @@
 package com.example.delivery1.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface UserDao {
-    @Query("SELECT * FROM Users")
-    fun getUsers(): List<User>
+
+    @Query("SELECT * FROM userinfo ORDER BY id DESC")
+    fun getAllUserInfo(): List<UserEntity>?
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addUser(user: User)
-
-    @Update
-    fun updUser(user: User)
+    fun insertUser(user: UserEntity?)
 
     @Delete
-    fun delUser(user: User)
+    fun deleteUser(user: UserEntity?)
+
+    @Update
+    fun updateUser(user: UserEntity?)
+
 }

@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "5ddedba6859f633ab19358c258e6d5d0",
+    "identityHash": "5652bd5f5a21f8a824f07f5b006ad054",
     "entities": [
       {
         "tableName": "Deliveries",
@@ -50,7 +50,7 @@
       },
       {
         "tableName": "Users",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `role` TEXT NOT NULL, `password` TEXT NOT NULL, PRIMARY KEY(`id`))",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `role` TEXT NOT NULL, `password` TEXT NOT NULL, `email` TEXT NOT NULL, PRIMARY KEY(`id`))",
         "fields": [
           {
             "fieldPath": "id",
@@ -69,6 +69,12 @@
             "columnName": "password",
             "affinity": "TEXT",
             "notNull": true
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -84,7 +90,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5ddedba6859f633ab19358c258e6d5d0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5652bd5f5a21f8a824f07f5b006ad054')"
     ]
   }
 }

@@ -20,4 +20,6 @@ interface DeliveryDao {
 
     @Delete
     fun delDelivery(pkg: Delivery)
+
+
 }

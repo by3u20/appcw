@@ -28,4 +28,7 @@ class DeliveryViewModel(application: Application) : AndroidViewModel(application
             repository.addDelivery(delivery)
         }
     }
+
 }
+
+

@@ -90,9 +90,6 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         val intent : Intent = Intent()
         val about = About()
         when (item.itemId){
-            R.id.nav_settings -> {
-                Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
-            }
             R.id.nav_profile -> {
                 Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
             }
