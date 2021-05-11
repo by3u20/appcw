@@ -6,27 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".fragments.Vendors">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="30dp"
+        >
 
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/vendors"
+            app:tint="@color/purple_700"
+            android:layout_gravity="center_horizontal"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vendors list here"
-            android:layout_centerInParent='true'
+            android:text="Vendors list shows below"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
             />
-    </RelativeLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/fab_margin"
-        android:layout_marginBottom="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:contentDescription="@string/add_new_data" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/vendors_list"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:paddingTop="30dp"/>
+    </LinearLayout>
+
 </FrameLayout>

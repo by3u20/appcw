@@ -22,4 +22,10 @@ class DeliveryViewModel(application: Application) : AndroidViewModel(application
             repository.addDelivery(delivery)
         }
     }
+
+    fun findVendors(delivery: Delivery){
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.addDelivery(delivery)
+        }
+    }
 }

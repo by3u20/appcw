@@ -1,6 +1,5 @@
 package com.example.delivery1
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import com.example.delivery1.data.Delivery
 import com.example.delivery1.databinding.CustomRowInListDeliveriesBinding
 
 
-class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
+class ListAdapterDelivery : RecyclerView.Adapter<ListAdapterDelivery.MyViewHolder>() {
 
     private lateinit var binding : CustomRowInListDeliveriesBinding
     private var deliveryList = emptyList<Delivery>()
@@ -31,6 +30,8 @@ class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         holder.itemView.findViewById<TextView>(R.id.delivery_from__text_list).text = currentItem.from.toString()
         holder.itemView.findViewById<TextView>(R.id.delivery_to__text_list).text = currentItem.to.toString()
         holder.itemView.findViewById<TextView>(R.id.delivery_driver_text_list).text = currentItem.driver.toString()
+
+
     }
 
     fun setData(delivery: List<Delivery>){

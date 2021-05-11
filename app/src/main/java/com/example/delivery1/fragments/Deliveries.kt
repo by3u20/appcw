@@ -14,7 +14,7 @@ import com.example.delivery1.AddDeliveryActivity
 import com.example.delivery1.data.DeliveryViewModel
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.delivery1.ListAdapter
+import com.example.delivery1.ListAdapterDelivery
 
 class Deliveries : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -25,7 +25,7 @@ class Deliveries : Fragment() {
             val intent = Intent(activity, AddDeliveryActivity::class.java)
             startActivity(intent)
         }
-        val adapter = ListAdapter()
+        val adapter = ListAdapterDelivery()
         var mDeliveryViewModel: DeliveryViewModel
         val recyclerView: RecyclerView = view.findViewById(R.id.deliveries_list)
         recyclerView.adapter = adapter
