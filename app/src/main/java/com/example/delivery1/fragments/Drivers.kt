@@ -23,7 +23,6 @@ class Drivers : Fragment() ,UserRecylerViewAdapter.RowClickListener{
 
     lateinit var recyclerViewAdapter: UserRecylerViewAdapter
     lateinit var viewModel: UserViewModel
-    lateinit var adapter : UserRecylerViewAdapter
     private lateinit var bindingDrivers: FragmentDriversBinding
 
 
