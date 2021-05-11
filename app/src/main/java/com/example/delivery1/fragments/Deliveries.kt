@@ -25,6 +25,7 @@ class Deliveries : Fragment() {
             val intent = Intent(activity, AddDeliveryActivity::class.java)
             startActivity(intent)
         }
+
         val adapter = ListAdapterDelivery()
         var mDeliveryViewModel: DeliveryViewModel
         val recyclerView: RecyclerView = view.findViewById(R.id.deliveries_list)

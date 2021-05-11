@@ -14,9 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.delivery1.data.UserRecylerViewAdapter
 import com.example.delivery1.data.UserViewModel
-import com.example.delivery1.ListAdapterDelivery
 import com.example.delivery1.R
-import com.example.delivery1.data.DeliveryViewModel
 import com.example.delivery1.data.UserEntity
 import com.example.delivery1.databinding.FragmentDriversBinding
 
@@ -25,43 +23,9 @@ class Drivers : Fragment() ,UserRecylerViewAdapter.RowClickListener{
 
     lateinit var recyclerViewAdapter: UserRecylerViewAdapter
     lateinit var viewModel: UserViewModel
+    lateinit var adapter : UserRecylerViewAdapter
     private lateinit var bindingDrivers: FragmentDriversBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        bindingDrivers = FragmentDriversBinding.inflate(layoutInflater)
-
-        bindingDrivers.recyclerView.apply {
-            layoutManager = LinearLayoutManager(requireContext())
-            recyclerViewAdapter = UserRecylerViewAdapter(this@Drivers)
-            adapter = recyclerViewAdapter
-            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(divider)
-        }
-
-        viewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-        viewModel.getAllUsersObservers().observe(this, Observer {
-            recyclerViewAdapter.setListData(ArrayList(it))
-            recyclerViewAdapter.notifyDataSetChanged()
-        })
-
-
-        bindingDrivers.saveButton.setOnClickListener {
-            val name  = bindingDrivers.nameInput.text.toString()
-            val email  = bindingDrivers.emailInput.text.toString()
-            val phone = bindingDrivers.phoneInput.text.toString()
-            if(bindingDrivers.saveButton.text.equals("Save")) {
-                val user = UserEntity(0, "Driver",name, "123456",email, phone,)
-                viewModel.insertUserInfo(user)
-            } else {
-                val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),"Driver" ,name, "123456",email, phone)
-                viewModel.updateUserInfo(user)
-                bindingDrivers.saveButton.setText("Save")
-            }
-            bindingDrivers.nameInput.setText("")
-            bindingDrivers.emailInput.setText("")
-        }
-    }
 
 
 
@@ -82,16 +46,39 @@ class Drivers : Fragment() ,UserRecylerViewAdapter.RowClickListener{
                               savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_drivers, container, false)
 
-        val adapter = ListAdapterDelivery()
-        var mDeliveryViewModel: DeliveryViewModel
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        mDeliveryViewModel = ViewModelProvider(this).get(DeliveryViewModel::class.java)
-        mDeliveryViewModel.getDeliveries.observe(viewLifecycleOwner, Observer { delivery ->
-            adapter.setData(delivery)
+        bindingDrivers = FragmentDriversBinding.inflate(layoutInflater)
+
+        recyclerViewAdapter = UserRecylerViewAdapter(this@Drivers)
+        bindingDrivers.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        bindingDrivers.recyclerView.adapter = recyclerViewAdapter
+
+        bindingDrivers.recyclerView.apply {
+            val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
+            addItemDecoration(divider)
+        }
+
+        viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
+        viewModel.getAllUsersObservers().observe(viewLifecycleOwner, Observer {
+            recyclerViewAdapter.setListData(ArrayList(it))
+            recyclerViewAdapter.notifyDataSetChanged()
         })
 
+
+        bindingDrivers.saveButton.setOnClickListener {
+            val name  = bindingDrivers.nameInput.text.toString()
+            val email  = bindingDrivers.emailInput.text.toString()
+            val phone = bindingDrivers.phoneInput.text.toString()
+            if(bindingDrivers.saveButton.text.equals("Save")) {
+                val user = UserEntity(0, "Driver",name, "123456",email, phone,)
+                viewModel.insertUserInfo(user)
+            } else {
+                val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),"Driver" ,name, "123456",email, phone)
+                viewModel.updateUserInfo(user)
+                bindingDrivers.saveButton.setText("Save")
+            }
+            bindingDrivers.nameInput.setText("")
+            bindingDrivers.emailInput.setText("")
+        }
         return view
     }
 
