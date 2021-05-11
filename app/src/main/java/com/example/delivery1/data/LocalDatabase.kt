@@ -17,17 +17,17 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 )
 abstract class LocalDatabase: RoomDatabase() {
     abstract fun deliveryDao(): DeliveryDao
-    abstract fun userDao(): UserDao?
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
         private var INSTANCE: LocalDatabase? = null
 
-        val migration_1_2: Migration = object: Migration(1, 2) {
-            override fun migrate(database: SupportSQLiteDatabase) {
-                database.execSQL("ALTER TABLE userinfo ADD COLUMN phone TEXT DEFAULT ''")
-            }
-        }
+        //val migration_1_2: Migration = object: Migration(1, 2) {
+        //    override fun migrate(database: SupportSQLiteDatabase) {
+        //        database.execSQL("ALTER TABLE userinfo ADD COLUMN phone TEXT DEFAULT ''")
+        //    }
+        //}
 
         fun getDatabase(context: Context): LocalDatabase {
             val tempInstance = INSTANCE
@@ -40,7 +40,7 @@ abstract class LocalDatabase: RoomDatabase() {
                     LocalDatabase::class.java,
                     "Local_Database"
                 )
-                    .addMigrations(migration_1_2)
+                    //.addMigrations(migration_1_2)
                     .fallbackToDestructiveMigration()
                     .allowMainThreadQueries()
                     .build()
@@ -48,6 +48,7 @@ abstract class LocalDatabase: RoomDatabase() {
                 return instance
             }
         }
+
         fun destroyInstance() {
             INSTANCE = null
         }

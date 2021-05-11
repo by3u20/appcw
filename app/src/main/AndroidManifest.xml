@@ -9,8 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Delivery1">
-        <activity android:name=".DriverSide"></activity>
-        <activity android:name=".UpdateDelevery" />
+        <activity android:name=".AddDriverActivity"></activity>
+        <activity android:name=".DriverSideActivity" />
         <activity android:name=".AddDeliveryActivity" />
         <activity
             android:name=".LoginActivity"
@@ -18,6 +18,7 @@
             android:theme="@style/Theme.Delivery1.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

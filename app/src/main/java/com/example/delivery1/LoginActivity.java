@@ -51,32 +51,26 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     isValidManager = validatedManager(inputName,inputPassword);
-                    if (!isValidManager){
-                        counter--;
-                        Toast.makeText(LoginActivity.this ,"Incorrect! Please try again!",Toast.LENGTH_SHORT).show();
-                        eAttemptsInfo.setText("Number of attempts remaining: "+counter);
-                        if (counter==0){
-                            eLogin.setEnabled(false);
-                        }
-                    }
-                    else{
+                    if (isValidManager){
                         Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                     }
-                    isValidDriver = validatedDriver(inputName,inputPassword);
-                    if (!isValidDriver){
-                        counter--;
-                        Toast.makeText(LoginActivity.this ,"Incorrect! Please try again!",Toast.LENGTH_SHORT).show();
-                        eAttemptsInfo.setText("Number of attempts remaining: "+counter);
-                        if (counter==0){
-                            eLogin.setEnabled(false);
-                        }
-                    }
                     else{
-                        Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this,DriverSide.class);
-                        startActivity(intent);
+                        isValidDriver = validatedDriver(inputName,inputPassword);
+                        if (!isValidDriver){
+                            counter--;
+                            Toast.makeText(LoginActivity.this ,"Incorrect! Please try again!",Toast.LENGTH_SHORT).show();
+                            eAttemptsInfo.setText("Number of attempts remaining: "+counter);
+                            if (counter==0){
+                                eLogin.setEnabled(false);
+                            }
+                        }
+                        else{
+                            Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, DriverSideActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
 

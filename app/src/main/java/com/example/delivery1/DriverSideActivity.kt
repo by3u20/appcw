@@ -18,7 +18,7 @@ import com.example.delivery1.data.DriverDeliveryViewModel
 import com.example.delivery1.fragments.About
 import com.google.android.material.navigation.NavigationView
 
-class DriverSide : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class DriverSideActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     lateinit var toggle: ActionBarDrawerToggle
 
