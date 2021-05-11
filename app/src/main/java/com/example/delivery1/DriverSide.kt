@@ -94,7 +94,7 @@ class DriverSide : AppCompatActivity(), NavigationView.OnNavigationItemSelectedL
                 makeCurrentFragment(about)
             }
         }
-        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawerLayout_driver)
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
