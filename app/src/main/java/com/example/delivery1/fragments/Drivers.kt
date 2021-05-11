@@ -12,8 +12,8 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.demo.roomdemo.UserRecylerViewAdapter
-import com.demo.roomdemo.UserViewModel
+import com.example.delivery1.data.UserRecylerViewAdapter
+import com.example.delivery1.data.UserViewModel
 import com.example.delivery1.ListAdapterDelivery
 import com.example.delivery1.R
 import com.example.delivery1.data.DeliveryViewModel
@@ -32,7 +32,7 @@ class Drivers : Fragment() ,UserRecylerViewAdapter.RowClickListener{
         bindingDrivers = FragmentDriversBinding.inflate(layoutInflater)
 
         bindingDrivers.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
+            layoutManager = LinearLayoutManager(requireContext())
             recyclerViewAdapter = UserRecylerViewAdapter(this@Drivers)
             adapter = recyclerViewAdapter
             val divider = DividerItemDecoration(context, StaggeredGridLayoutManager.VERTICAL)
