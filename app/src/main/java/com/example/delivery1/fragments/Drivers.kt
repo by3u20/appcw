@@ -30,15 +30,13 @@ class Drivers : Fragment(){
         val view = inflater.inflate(R.layout.fragment_drivers, container, false)
 
         val adapter = ListAdapterDriver()
+        val mUserViewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         val recyclerView: RecyclerView = view.findViewById(R.id.drivers_list)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        LocalDatabase.getDatabase(requireContext())
-            .userDao()
-            .getAllUserInfo()
-            .observe(viewLifecycleOwner, Observer {
-                adapter.setData(it)
-            })
+        mUserViewModel.allUsers.observe(viewLifecycleOwner, Observer {
+            adapter.setData(it)
+        })
 
         view.findViewById<Button>(R.id.add_new_driver_button).setOnClickListener {
             startActivity(Intent(activity, AddDriverActivity::class.java))

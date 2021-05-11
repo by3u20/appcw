@@ -7,7 +7,7 @@ import androidx.room.*
 interface UserDao {
 
     @Query("SELECT * FROM userinfo ORDER BY id DESC")
-    fun getAllUserInfo(): LiveData<List<UserEntity>>
+    fun getAllUserInfo(): List<UserEntity>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertUser(user: UserEntity?)
