@@ -10,8 +10,7 @@
         android:id="@+id/deliveries_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:paddingVertical="8sp" />
+        android:layout_gravity="center_horizontal" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_delivery_button"
