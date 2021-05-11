@@ -7,11 +7,15 @@ import androidx.room.RoomDatabase
 
 @Database(
     version = 1,
-    entities = [Delivery::class],
+    entities = [
+        Delivery::class,
+        User::class,
+   ],
     exportSchema = true
 )
 abstract class LocalDatabase: RoomDatabase() {
     abstract fun deliveryDao(): DeliveryDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile
@@ -27,7 +31,8 @@ abstract class LocalDatabase: RoomDatabase() {
                     context.applicationContext,
                     LocalDatabase::class.java,
                     "Local_Database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }
