@@ -6,63 +6,108 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".AddDriverActivity">
 
-
-<EditText android:id="@+id/roleInput"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter new user's role"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_margin="10dp"
-    />
-
-<EditText android:id="@+id/nameInput"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter new user's username"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/roleInput"
-    android:layout_marginStart="10dp"/>
-
-<EditText android:id="@+id/emailInput"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter new user's email"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/nameInput"
-    android:layout_marginStart="10dp"/>
-
-<EditText android:id="@+id/phoneInput"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter new user's phone number"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/emailInput"
-    android:layout_marginStart="10dp"/>
-
-<EditText android:id="@+id/passwordInput"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="Enter new user's password"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/phoneInput"
-    android:layout_marginStart="10dp"/>
-
-    <Button
-        android:id="@+id/saveButton"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Save"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordInput" />
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="20dp"
+        android:id="@+id/fill_user_info_layout">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_deliveries_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username"
+            app:startIconDrawable="@drawable/username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:hint="User Role"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/profile"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_marginTop="10dp">
+
+            <AutoCompleteTextView
+                android:id="@+id/roleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/password"
+            android:hint="Password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/passwordInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="E-mail"
+            app:startIconDrawable="@drawable/email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:startIconDrawable="@drawable/phone"
+            android:hint="Telephone Number"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="10dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/phoneInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/saveButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="Save"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+
 
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/drivers_info_list"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/saveButton"
+    app:layout_constraintTop_toBottomOf="@+id/fill_user_info_layout"
     />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

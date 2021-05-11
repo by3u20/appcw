@@ -2,6 +2,8 @@ package com.example.delivery1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +11,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.example.delivery1.data.Delivery
 import com.example.delivery1.data.UserEntity
 import com.example.delivery1.databinding.ActivityAddDriverBinding
 
@@ -31,6 +34,9 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         val divider = DividerItemDecoration(this, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.addItemDecoration(divider)
 
+        val role = resources.getStringArray(R.array.role)
+        val arrayAdapter = ArrayAdapter(this,R.layout.dropdown_item_delivery_status,role)
+        bindingDrivers.roleInput.setAdapter(arrayAdapter)
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
         viewModel.getAllUsersObservers().observe(this, Observer {
@@ -52,21 +58,35 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         val email  = bindingDrivers.emailInput.text.toString()
         val phone = bindingDrivers.phoneInput.text.toString()
         val password = bindingDrivers.passwordInput.text.toString()
-
-        if(bindingDrivers.saveButton.text.equals("Save")) {
-            val user = UserEntity(0, role,username, password,email, phone,)
-            viewModel.insertUserInfo(user)
-            Toast.makeText(this@AddDriverActivity,"Successfully Added!", Toast.LENGTH_SHORT).show()
+        if (this.inputCheck(role, username, email, phone, password)) {
+            if(bindingDrivers.saveButton.text.equals("Save")) {
+                val user = UserEntity(0, role,username, password,email, phone,)
+                viewModel.insertUserInfo(user)
+                Toast.makeText(this@AddDriverActivity,"Successfully Added!", Toast.LENGTH_SHORT).show()
+            } else {
+                val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),role ,username, password,email, phone)
+                viewModel.updateUserInfo(user)
+                bindingDrivers.saveButton.setText("Save")
+            }
+            bindingDrivers.roleInput.setText("")
+            bindingDrivers.nameInput.setText("")
+            bindingDrivers.emailInput.setText("")
+            bindingDrivers.phoneInput.setText("")
+            bindingDrivers.passwordInput.setText("")
+            Toast.makeText(applicationContext,"Successfully Added!",Toast.LENGTH_SHORT).show()
         } else {
-            val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),role ,username, password,email, phone)
-            viewModel.updateUserInfo(user)
-            bindingDrivers.saveButton.setText("Save")
+            Toast.makeText(applicationContext,"Please fill all fields!",Toast.LENGTH_SHORT).show()
         }
-        bindingDrivers.roleInput.setText("")
-        bindingDrivers.nameInput.setText("")
-        bindingDrivers.emailInput.setText("")
-        bindingDrivers.phoneInput.setText("")
-        bindingDrivers.passwordInput.setText("")
+
+    }
+
+
+    private fun inputCheck(A: String,
+                           B: String,
+                           C: String,
+                           D: String,
+                           E: String) : Boolean {
+        return !(TextUtils.isEmpty(A) || TextUtils.isEmpty(B) || TextUtils.isEmpty(C) || TextUtils.isEmpty(D) || TextUtils.isEmpty(E))
     }
 
     override fun onDeleteUserClickListener(user: UserEntity) {
