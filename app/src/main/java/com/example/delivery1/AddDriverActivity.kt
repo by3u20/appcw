@@ -20,9 +20,9 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_driver)
 
         bindingDrivers = ActivityAddDriverBinding.inflate(layoutInflater)
+        setContentView(bindingDrivers.root)
 
         val recyclerView : RecyclerView = bindingDrivers.driversInfoList
         recyclerViewAdapter = RecyclerViewAdapter(this)
@@ -41,6 +41,7 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
 
         bindingDrivers.saveButton.setOnClickListener {
             this.insertDataOrShowInfo()
+            Toast.makeText(this, "Clicked", 5)
         }
     }
 
@@ -55,7 +56,7 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         if(bindingDrivers.saveButton.text.equals("Save")) {
             val user = UserEntity(0, role,username, password,email, phone,)
             viewModel.insertUserInfo(user)
-            Toast.makeText(this,"Successfully Added!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@AddDriverActivity,"Successfully Added!", Toast.LENGTH_SHORT).show()
         } else {
             val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),role ,username, password,email, phone)
             viewModel.updateUserInfo(user)
