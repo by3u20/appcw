@@ -36,6 +36,7 @@
             android:layout_marginEnd="4dp"
             android:text="@string/card_delivery_status_title"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/delivery_status_text_list"
             app:layout_constraintEnd_toStartOf="@+id/delivery_status_text_list" />
 
         <TextView
