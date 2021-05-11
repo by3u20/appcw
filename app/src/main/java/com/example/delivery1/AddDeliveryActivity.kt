@@ -14,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.delivery1.data.Delivery
 import com.example.delivery1.data.DeliveryViewModel
 import com.example.delivery1.databinding.ActivityAddDeliveryBinding
+import androidx.recyclerview.widget.RecyclerView
+import com.example.delivery1.databinding.CustomRowInListDeliveriesBinding
 
 class AddDeliveryActivity : AppCompatActivity() {
 
