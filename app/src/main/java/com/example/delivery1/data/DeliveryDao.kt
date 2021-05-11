@@ -9,6 +9,9 @@ interface DeliveryDao {
     @Query("SELECT * FROM Deliveries")
     fun getDeliveries(): LiveData<List<Delivery>>
 
+    @Query("SELECT * FROM Deliveries WHERE driver = :name")
+    fun getDeliveriesWithDriverName(name: String): LiveData<List<Delivery>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addDelivery(pkg: Delivery)
 
