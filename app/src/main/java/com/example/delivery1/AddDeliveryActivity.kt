@@ -1,22 +1,16 @@
 package com.example.delivery1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.StrictMode
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.lifecycle.ViewModel
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.delivery1.data.Delivery
 import com.example.delivery1.data.DeliveryViewModel
+import com.example.delivery1.data.LocalDatabase.Companion.getDatabase
 import com.example.delivery1.databinding.ActivityAddDeliveryBinding
-import androidx.recyclerview.widget.RecyclerView
-import com.example.delivery1.databinding.CustomRowInListDeliveriesBinding
 
 class AddDeliveryActivity : AppCompatActivity() {
 
@@ -30,7 +24,11 @@ class AddDeliveryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val deliveryStatus = resources.getStringArray(R.array.delivery_status)
-        val arrayAdapter = ArrayAdapter(this,R.layout.dropdown_item_delivery_status,deliveryStatus)
+        val arrayAdapter = ArrayAdapter(
+            this,
+            R.layout.dropdown_item_delivery_status,
+            deliveryStatus
+        )
         binding.addDeliveriesStatusText.setAdapter(arrayAdapter)
 
 
@@ -41,12 +39,16 @@ class AddDeliveryActivity : AppCompatActivity() {
         }
     }
 
-    private fun inputCheck(deliveriesID: String,
-                           deliveryStatus: String,
-                           fromID: String,
-                           toID: String,
-                           driverID: String) : Boolean {
-        return !(TextUtils.isEmpty(deliveriesID) || TextUtils.isEmpty(deliveryStatus) || TextUtils.isEmpty(fromID) || TextUtils.isEmpty(toID) || TextUtils.isEmpty(driverID))
+    private fun inputCheck(
+        deliveriesID: String,
+        deliveryStatus: String,
+        fromID: String,
+        toID: String,
+        driverID: String
+    ) : Boolean {
+        return !(TextUtils.isEmpty(deliveriesID) || TextUtils.isEmpty(deliveryStatus) || TextUtils.isEmpty(
+            fromID
+        ) || TextUtils.isEmpty(toID) || TextUtils.isEmpty(driverID))
     }
 
     private fun insertDataToDatabase() {
@@ -57,17 +59,23 @@ class AddDeliveryActivity : AppCompatActivity() {
         val driverID = binding.addDeliveriesDriverIdText.text.toString()
 
         if (this.inputCheck(deliveriesID, deliveryStatus, fromID, toID, driverID)) {
-            val delivery = Delivery(deliveriesID, deliveryStatus, fromID, toID, driverID)
-            mDeliveryViewModel.addDelivery(delivery)
-            Toast.makeText(applicationContext,"Successfully Added!",Toast.LENGTH_SHORT).show()
-            if (driverID=="Haoyu"){
-                val a : Sendemail = Sendemail()
-                a.Sendemail("hw3g20@soton.ac.uk")
-                val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-                StrictMode.setThreadPolicy(policy)
+            val users = getDatabase(applicationContext).userDao().getAllUserInfo()
+            for (user in users) {
+                if (driverID == user.username){
+                    val delivery = Delivery(deliveriesID, deliveryStatus, fromID, toID, driverID)
+                    mDeliveryViewModel.addDelivery(delivery)
+                    Toast.makeText(applicationContext, "Successfully Added!", Toast.LENGTH_SHORT).show()
+                    val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+                    StrictMode.setThreadPolicy(policy)
+                    val a : Sendemail = Sendemail()
+                    a.Sendemail(user.email)
+                }
+                else{
+                    Toast.makeText(applicationContext, "Don't have this driver", Toast.LENGTH_SHORT).show()
+                }
             }
         } else {
-            Toast.makeText(applicationContext,"Please fill all fields!",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Please fill all fields!", Toast.LENGTH_SHORT).show()
         }
     }
 
