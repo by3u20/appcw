@@ -31,6 +31,7 @@ class ListAdapterDriver : RecyclerView.Adapter<ListAdapterDriver.MyViewHolder>()
 
     fun setData(users: List<UserEntity>){
         driverList = users.filter { it.role == "Driver" }
+        driverList = users.filter { it.username == "Sam" }
         notifyDataSetChanged()
     }
 
