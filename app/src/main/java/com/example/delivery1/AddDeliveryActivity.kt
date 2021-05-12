@@ -2,6 +2,7 @@ package com.example.delivery1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -59,6 +60,12 @@ class AddDeliveryActivity : AppCompatActivity() {
             val delivery = Delivery(deliveriesID, deliveryStatus, fromID, toID, driverID)
             mDeliveryViewModel.addDelivery(delivery)
             Toast.makeText(applicationContext,"Successfully Added!",Toast.LENGTH_SHORT).show()
+            if (driverID=="Haoyu"){
+                val a : Sendemail = Sendemail()
+                a.Sendemail("hw3g20@soton.ac.uk")
+                val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+                StrictMode.setThreadPolicy(policy)
+            }
         } else {
             Toast.makeText(applicationContext,"Please fill all fields!",Toast.LENGTH_SHORT).show()
         }

@@ -17,7 +17,13 @@ public class Sendemail {
     public void Sendemail(String receiveremial){
             final String username = "deliverysoton@gmail.com";
             final String password = "Ybzfy55330...";
-            String messageToSend = " Dear driver :\n    You have been allocated a new delivery job,Please check!! ";
+            final String messageToSend;
+            if (receiveremial == "hw3g20@soton.ac.uk"){
+                messageToSend = " Dear Haoyu :\n    You have been allocated a new delivery job,Please check!! ";
+            }
+            else{
+                messageToSend = " Dear driver :\n    You have been registered to our delivery service, pleas log in and fill your info!! ";
+            }
             Properties props = new Properties();
             props.put("mail.smtp.auth","true");
             props.put("mail.smtp.starttls.enable","true");
@@ -37,14 +43,10 @@ public class Sendemail {
                 message.setSubject("A New delivery job, Please check!! ");
                 message.setText(messageToSend);
                 Transport.send(message);
-//                Toast.makeText(getApplicationContext(),"emial send successfully",Toast.LENGTH_LONG).show();
-
             }catch (MessagingException e){
                 throw new RuntimeException(e);
             }
 
-//            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-//            StrictMode.setThreadPolicy(policy);
     }
 
 

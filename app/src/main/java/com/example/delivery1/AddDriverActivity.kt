@@ -75,10 +75,10 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
             bindingDrivers.emailInput.setText("")
             bindingDrivers.phoneInput.setText("")
             bindingDrivers.passwordInput.setText("")
-            val a : Sendemail = Sendemail()
-            a.Sendemail(email)
             val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
             StrictMode.setThreadPolicy(policy)
+            val a : Sendemail = Sendemail()
+            a.Sendemail(email)
             Toast.makeText(applicationContext, "Successfully Added!", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(applicationContext, "Please fill all fields!", Toast.LENGTH_SHORT).show()
