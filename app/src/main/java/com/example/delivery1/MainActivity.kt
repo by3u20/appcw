@@ -1,19 +1,18 @@
 package com.example.delivery1
 
+import android.R.attr.key
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.delivery1.fragments.*
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.textfield.TextInputLayout
+
 
 class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,12 +22,15 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         /*---------------------------------Change Fragment------------------------------------*/
         val deliveriesFragment = Deliveries()
         val driversFragment = Drivers()
         val vendorsFragment = Vendors()
         val buildingFragment = Building()
-        val bottom_navigation = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottom_navigation)
+        val bottom_navigation = findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(
+            R.id.bottom_navigation
+        )
 
         makeCurrentFragment(deliveriesFragment)
 
@@ -52,11 +54,10 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
         setSupportActionBar(toolbar);
 
         navigationView.bringToFront()
-        toggle = ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.open,R.string.close)
+        toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close)
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navigationView.setNavigationItemSelectedListener(this)
-
 
 
 
@@ -65,7 +66,7 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
 
     private fun makeCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply{
-            replace(R.id.fl_wrapper,fragment)
+            replace(R.id.fl_wrapper, fragment)
             commit()
         }
 
@@ -89,18 +90,21 @@ class MainActivity : AppCompatActivity() , NavigationView.OnNavigationItemSelect
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         val intent : Intent = Intent()
         val about = About()
+        val username = intent.getStringExtra("Username")
         when (item.itemId){
             R.id.nav_profile -> {
-                Toast.makeText(this,"Not done yet!",Toast.LENGTH_SHORT).show()
+                intent.setClass(this,ProfileEditActivity::class.java)
+                intent.putExtra("Username",username)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
                 intent.setClass(this, LoginActivity::class.java)
                 startActivity(intent)
             }
             R.id.nav_share -> {
-                Toast.makeText(this,"Copied!",Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Copied!", Toast.LENGTH_SHORT).show()
             }
-            R.id.nav_about ->{
+            R.id.nav_about -> {
                 makeCurrentFragment(about)
             }
         }

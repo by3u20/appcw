@@ -52,26 +52,28 @@ public class LoginActivity extends AppCompatActivity {
                 if(inputName.isEmpty()||inputPassword.isEmpty()){
                     Toast.makeText(LoginActivity.this ,"Please enter details correctly!",Toast.LENGTH_SHORT).show();
                 } else {
-                    isValidManager = validate(inputName, inputPassword, "Admin");
+                    isValidManager = validate(inputName, inputPassword, "Manager");
                     if (isValidManager){
                         Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                        intent.putExtra("Username",inputName);
                         startActivity(intent);
                     }
                     else{
                         isValidDriver = validate(inputName, inputPassword, "Driver");
-                        if (!isValidDriver){
+                        if (isValidDriver){
+                            Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(LoginActivity.this, DriverSideActivity.class);
+                            intent.putExtra("Username",inputName);
+                            startActivity(intent);
+                        }
+                        else{
                             counter--;
                             Toast.makeText(LoginActivity.this ,"Incorrect! Please try again!",Toast.LENGTH_SHORT).show();
                             eAttemptsInfo.setText("Number of attempts remaining: "+counter);
                             if (counter==0){
                                 eLogin.setEnabled(false);
                             }
-                        }
-                        else{
-                            Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(LoginActivity.this, DriverSideActivity.class);
-                            startActivity(intent);
                         }
                     }
                 }
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean validate(String name, String password, String role) {
         // XXX: Hard-coded super user
-        if (role.equals("Admin") && name.equals("Admin") && password.equals("123456"))
+        if (role.equals("Manager") && name.equals("Admin") && password.equals("123456"))
             return true;
 
         List<UserEntity> users = LocalDatabase.Companion.getDatabase(getApplicationContext()).userDao().getAllUserInfo();

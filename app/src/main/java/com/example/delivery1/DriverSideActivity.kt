@@ -79,9 +79,13 @@ class DriverSideActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     override fun onNavigationItemSelected(item: MenuItem): Boolean{
         val intent : Intent = Intent()
         val about = About()
+        val username = intent.getStringExtra("Username")
+
         when (item.itemId){
             R.id.nav_profile -> {
-                Toast.makeText(this,"Not done yet!", Toast.LENGTH_SHORT).show()
+                intent.setClass(this,ProfileEditActivity::class.java)
+                intent.putExtra("Username",username)
+                startActivity(intent)
             }
             R.id.nav_logout -> {
                 intent.setClass(this, LoginActivity::class.java)

@@ -7,39 +7,18 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.delivery1.data.UserEntity
-import com.example.delivery1.databinding.RecyclerviewRowBinding
 
 
-class RecyclerViewAdapter(val listener: RowClickListener): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>() {
+class ListAdapterDriverProfile (val listener: ListAdapterDriverProfile.RowClickListener): RecyclerView.Adapter<ListAdapterDriverProfile.MyViewHolder>() {
 
-    var items  = ArrayList<UserEntity>()
+
+    var items  = emptyList<UserEntity>()
 
     fun setListData(data: ArrayList<UserEntity>) {
         this.items = data
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.MyViewHolder {
-       val inflater = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
-        return MyViewHolder(inflater, listener)
-    }
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    override fun onBindViewHolder(holder: RecyclerViewAdapter.MyViewHolder, position: Int) {
-        val currentItem = items[position]
-
-        holder.itemView.setOnClickListener {
-            listener.onItemClickListener(items[position])
-        }
-        holder.bind(items[position])
-
-    }
-
-
-
-    class MyViewHolder(view: View, val listener: RowClickListener): RecyclerView.ViewHolder(view) {
+    class MyViewHolder (view: View, val listener: ListAdapterDriverProfile.RowClickListener) : RecyclerView.ViewHolder(view){
 
         val tvName = view.findViewById<TextView>(R.id.tvName)
         val tvEmail = view.findViewById<TextView>(R.id.tvEmail)
@@ -62,8 +41,32 @@ class RecyclerViewAdapter(val listener: RowClickListener): RecyclerView.Adapter<
         }
     }
 
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListAdapterDriverProfile.MyViewHolder {
+        val inflater = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_row, parent, false)
+        return MyViewHolder(inflater, listener)
+    }
+
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        val currentItem = items[position]
+
+        holder.itemView.setOnClickListener {
+            listener.onItemClickListener(items[position])
+        }
+        holder.bind(currentItem)
+
+    }
+
+    fun setData(users: List<UserEntity>){
+        items = users.filter { it.role == "Driver" }
+        items = users.filter { it.username == "Sam" }
+        notifyDataSetChanged()
+    }
     interface RowClickListener{
         fun onDeleteUserClickListener(user: UserEntity)
         fun onItemClickListener(user: UserEntity)
+    }
+
+    override fun getItemCount(): Int {
+        return items.size
     }
 }
