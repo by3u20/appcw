@@ -1,17 +1,17 @@
 package com.example.delivery1
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.TextUtils
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.example.delivery1.data.Delivery
 import com.example.delivery1.data.UserEntity
 import com.example.delivery1.databinding.ActivityAddDriverBinding
 
@@ -35,7 +35,7 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         recyclerView.addItemDecoration(divider)
 
         val role = resources.getStringArray(R.array.role)
-        val arrayAdapter = ArrayAdapter(this,R.layout.dropdown_item_delivery_status,role)
+        val arrayAdapter = ArrayAdapter(this, R.layout.dropdown_item_delivery_status, role)
         bindingDrivers.roleInput.setAdapter(arrayAdapter)
 
         viewModel = ViewModelProvider(this).get(UserViewModel::class.java)
@@ -49,6 +49,8 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
             this.insertDataOrShowInfo()
             Toast.makeText(this, "Clicked", 5)
         }
+
+
     }
 
 
@@ -60,11 +62,11 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
         val password = bindingDrivers.passwordInput.text.toString()
         if (this.inputCheck(role, username, email, phone, password)) {
             if(bindingDrivers.saveButton.text.equals("Save")) {
-                val user = UserEntity(0, role,username, password,email, phone,)
+                val user = UserEntity(0, role, username, password, email, phone)
                 viewModel.insertUserInfo(user)
-                Toast.makeText(this@AddDriverActivity,"Successfully Added!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@AddDriverActivity, "Successfully Added!", Toast.LENGTH_SHORT).show()
             } else {
-                val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(),role ,username, password,email, phone)
+                val user = UserEntity(bindingDrivers.nameInput.getTag(bindingDrivers.nameInput.id).toString().toInt(), role, username, password, email, phone)
                 viewModel.updateUserInfo(user)
                 bindingDrivers.saveButton.setText("Save")
             }
@@ -73,9 +75,13 @@ class AddDriverActivity : AppCompatActivity(), RecyclerViewAdapter.RowClickListe
             bindingDrivers.emailInput.setText("")
             bindingDrivers.phoneInput.setText("")
             bindingDrivers.passwordInput.setText("")
-            Toast.makeText(applicationContext,"Successfully Added!",Toast.LENGTH_SHORT).show()
+            val a : Sendemail = Sendemail()
+            a.Sendemail(email)
+            val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
+            StrictMode.setThreadPolicy(policy)
+            Toast.makeText(applicationContext, "Successfully Added!", Toast.LENGTH_SHORT).show()
         } else {
-            Toast.makeText(applicationContext,"Please fill all fields!",Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "Please fill all fields!", Toast.LENGTH_SHORT).show()
         }
 
     }

@@ -57,6 +57,7 @@ class ListAdapterDriverProfile (val listener: ListAdapterDriverProfile.RowClickL
     }
 
     fun setData(users: List<UserEntity>){
+        val username = "Sam"
         items = users.filter { it.role == "Driver" }
         items = users.filter { it.username == "Sam" }
         notifyDataSetChanged()
