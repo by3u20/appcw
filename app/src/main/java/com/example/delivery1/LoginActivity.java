@@ -3,6 +3,8 @@ package com.example.delivery1;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.delivery1.data.LocalDatabase;
+import com.example.delivery1.data.UserEntity;
 import com.google.android.material.textfield.TextInputEditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,17 +51,15 @@ public class LoginActivity extends AppCompatActivity {
                 String inputPassword = ePassword.getText().toString();
                 if(inputName.isEmpty()||inputPassword.isEmpty()){
                     Toast.makeText(LoginActivity.this ,"Please enter details correctly!",Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    isValidManager = validatedManager(inputName,inputPassword);
+                } else {
+                    isValidManager = validate(inputName, inputPassword, "Admin");
                     if (isValidManager){
                         Toast.makeText(LoginActivity.this ,"Login Successful!",Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                         startActivity(intent);
                     }
                     else{
-                        isValidDriver = validatedDriver(inputName,inputPassword);
+                        isValidDriver = validate(inputName, inputPassword, "Driver");
                         if (!isValidDriver){
                             counter--;
                             Toast.makeText(LoginActivity.this ,"Incorrect! Please try again!",Toast.LENGTH_SHORT).show();
@@ -79,16 +81,15 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private boolean validatedManager(String name, String password){
-        if(name.equals(Username) && password.equals(Password)){
+    private boolean validate(String name, String password, String role) {
+        // XXX: Hard-coded super user
+        if (role.equals("Admin") && name.equals("Admin") && password.equals("123456"))
             return true;
-        }
-        return false;
-    }
 
-    private boolean validatedDriver(String name, String password){
-        if(name.equals(DriverUsername) && password.equals(DriverPassword)){
-            return true;
+        List<UserEntity> users = LocalDatabase.Companion.getDatabase(getApplicationContext()).userDao().getAllUserInfo();
+        for (UserEntity u: users) {
+            if (u.getUsername().equals(name) && u.getPassword().equals(password) && u.getRole().equals(role))
+                return true;
         }
         return false;
     }

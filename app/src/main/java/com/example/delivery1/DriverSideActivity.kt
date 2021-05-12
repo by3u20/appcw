@@ -67,7 +67,7 @@ class DriverSideActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     override fun onBackPressed() {
-        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout)
+        val drawerLayout : DrawerLayout = findViewById(R.id.drawerLayout_driver)
         if(drawerLayout.isDrawerOpen(GravityCompat.START)){
             drawerLayout.closeDrawer(GravityCompat.START)
         }
